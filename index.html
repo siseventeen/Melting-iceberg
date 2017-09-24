@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Only Box Breathing Visualizer</title>
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+  background: #52BBF0;
+  font: 400 16px/1.4 'Roboto', sans-serif;
+  letter-spacing: .12em;
+}
+
+.wrapper {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 60vh;
+  height: 60vh;
+  position: absolute;
+  margin: auto;
+}
+
+.directions {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-40%, -40%);
+  font-size: 1rem;
+}
+.directions .message {
+  
+  animation: text-highlight 12000ms infinite;
+  color: white;
+  opacity: .3;
+  display:inline-block;
+}
+.directions .message:nth-child(2) {
+  animation-delay: 2000ms;
+}
+.directions .message:nth-child(3) {
+  animation-delay: 6000ms;
+}
+.directions .message:nth-child(4) {
+  animation-delay: 10000ms;
+}
+
+.timer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 5%; 
+  background: #81cdf4;
+}
+.timer:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateX(-100%);
+  animation: timer 24000ms linear infinite;
+  animation-fill-mode: forwards;
+  background: #3F6FB8;
+  z-index: 0;
+}
+.timer.inhale {
+  left: 10%;
+  width: 80%;
+  transform: rotate(0);
+}
+.timer.inhale-hold {
+  position: absolute;
+  width: 80%;
+  right: 5%;
+  bottom: 10%;
+  transform: rotate(90deg);
+  transform-origin: bottom right;
+}
+.timer.inhale-hold:after {
+  animation-delay: 2000ms;
+}
+.timer.exhale {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  transform: rotate(180deg);
+}
+.timer.exhale:after {
+  animation-delay: 6000ms;
+}
+.timer.exhale-hold {
+  position: absolute;
+  width: 80%;
+  left: 5%;
+  bottom: 10%;
+  transform: rotate(270deg);
+  transform-origin: bottom left;
+}
+.timer.exhale-hold:after {
+  animation-delay: 8000ms;
+}
+.timer .indicators {
+  display: flex;
+  height: 100%;
+}
+.timer .indicator {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  display: block;
+  flex: 1;
+  border: 1px solid #52BBF0;
+  box-sizing: border-box;
+}
+
+@keyframes timer {
+  10%,50% {
+    transform: translateX(0%);
+  }
+  60%,100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes text-highlight {
+  2%,25% {
+    color: white;
+    opacity: 1;
+    font-weight: 600;
+  }
+  28%,100% {
+    color: white;
+    opacity: .3;
+  }
+}
+
+    </style>
+
+</head>
+
+<body>
+  <div class="wrapper">
+  <div class="directions">
+    <div class="message">Inhale</div>
+    <div class="message">Hold</div>
+    <div class="message">Exhale</div>
+    <div class="message">Hold</div>
+  </div>  
+  <div class="timer inhale">
+    <div class="progress"></div>
+    <div class="indicators">
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+    </div>
+  </div>
+  <div class="timer inhale-hold">
+    <div class="indicators">
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+    </div>
+  </div>
+  <div class="timer exhale">
+    <div class="indicators">
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+    </div>
+  </div>
+  <div class="timer exhale-hold">
+    <div class="indicators">
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+      <div class="indicator"></div>
+    </div>
+  </div>
+</div>
+  
+  
+</body>
+</html>
